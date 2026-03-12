@@ -561,37 +561,30 @@ export default function ListPage() {
   return (
     <div className="max-w-6xl mx-auto">
       <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-4xl">📋</span>
-          <h1 className="text-4xl font-bold text-gray-800">회원정보목록</h1>
-        </div>
-        <p className="text-gray-600 text-lg ml-12">등록된 모든 회원 정보를 조회하고 관리합니다</p>
+        <div className="badge">MEMBERS</div>
+        <h1 className="section-title mt-3">회원 목록</h1>
+        <p className="section-subtitle">등록된 모든 회원 정보를 조회하고 관리합니다.</p>
       </div>
 
       {isLoading ? (
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+        <div className="card-surface shadow-soft p-8">
           <div className="text-center py-12">
-            <div className="w-24 h-24 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-5xl">⏳</span>
-            </div>
-            <h2 className="text-2xl font-semibold text-gray-700 mb-2">회원 정보를 불러오는 중...</h2>
+            <h2 className="text-xl font-extrabold text-surface-900 mb-2">회원 정보를 불러오는 중...</h2>
+            <p className="text-sm text-surface-600">잠시만 기다려주세요.</p>
           </div>
         </div>
       ) : !members || !Array.isArray(members) || members.length === 0 ? (
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+        <div className="card-surface shadow-soft p-8">
           <div className="text-center py-12">
-            <div className="w-24 h-24 bg-gradient-to-br from-purple-100 to-purple-200 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-5xl">👥</span>
-            </div>
-            <h2 className="text-2xl font-semibold text-gray-700 mb-2">등록된 회원이 없습니다</h2>
-            <p className="text-gray-500">회원정보등록 페이지에서 새로운 회원을 등록해주세요.</p>
+            <h2 className="text-xl font-extrabold text-surface-900 mb-2">등록된 회원이 없습니다</h2>
+            <p className="text-sm text-surface-600">회원 등록 페이지에서 새로운 회원을 등록해주세요.</p>
           </div>
         </div>
       ) : (
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6">
+        <div className="card-surface shadow-soft p-6">
           <div className="mb-4 flex items-center justify-between gap-4 flex-wrap">
             <div className="flex items-center gap-4 flex-1 min-w-[300px]">
-              <h2 className="text-xl font-semibold text-gray-700 whitespace-nowrap">
+              <h2 className="text-lg font-extrabold text-surface-900 whitespace-nowrap">
                 총 {filteredMembers?.length || 0}명의 회원
                 {searchQuery && ` (검색 결과: ${filteredMembers?.length || 0}명)`}
               </h2>
@@ -602,39 +595,39 @@ export default function ListPage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="회원 이름으로 검색..."
-                    className="w-full border border-gray-300 rounded-md px-4 py-2 pl-10 outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500 text-sm"
+                    className="w-full border border-surface-200 rounded-xl px-4 py-2.5 pl-10 outline-none focus:ring-2 focus:ring-brand-100 focus:border-brand-400 text-sm bg-white placeholder:text-surface-400"
                   />
-                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400">🔍</span>
+                  <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-surface-400">⌕</span>
                   {searchQuery && (
-                    <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                    <button onClick={() => setSearchQuery("")} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-surface-400 hover:text-surface-600">
                       ✕
                     </button>
                   )}
                 </div>
               </div>
             </div>
-            <button onClick={handleExport} className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors text-sm font-medium whitespace-nowrap">
-              📥 데이터 내보내기 (JSON)
+            <button onClick={handleExport} className="btn-secondary text-sm whitespace-nowrap">
+              데이터 내보내기 (JSON)
             </button>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full">
+            <table className="table-basic">
               <thead>
-                <tr className="border-b border-gray-200">
-                  <th className="text-left py-3 px-4 font-semibold text-gray-700">이름</th>
-                  <th className="text-left py-3 px-4 font-semibold text-gray-700">성별</th>
-                  <th className="text-left py-3 px-4 font-semibold text-gray-700">나이</th>
-                  <th className="text-left py-3 px-4 font-semibold text-gray-700">키(cm)</th>
-                  <th className="text-left py-3 px-4 font-semibold text-gray-700">몸무게(kg)</th>
-                  <th className="text-left py-3 px-4 font-semibold text-gray-700">특이사항</th>
-                  <th className="text-left py-3 px-4 font-semibold text-gray-700">등록일</th>
-                  <th className="text-left py-3 px-4 font-semibold text-gray-700">관리</th>
+                <tr>
+                  <th className="table-th">이름</th>
+                  <th className="table-th">성별</th>
+                  <th className="table-th">나이</th>
+                  <th className="table-th">키(cm)</th>
+                  <th className="table-th">몸무게(kg)</th>
+                  <th className="table-th">특이사항</th>
+                  <th className="table-th">등록일</th>
+                  <th className="table-th">관리</th>
                 </tr>
               </thead>
               <tbody>
                 {!filteredMembers || filteredMembers.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="py-8 text-center text-gray-500">
+                    <td colSpan={7} className="py-8 text-center text-surface-600">
                       검색 결과가 없습니다.
                     </td>
                   </tr>
@@ -643,18 +636,18 @@ export default function ListPage() {
                     // [5] null-safe 처리
                     if (!member) return null;
                     return (
-                      <tr key={member.id} className="border-b border-gray-100 hover:bg-gray-50">
-                        <td className="py-3 px-4 text-gray-700 font-medium">{member?.name || "-"}</td>
-                        <td className="py-3 px-4 text-gray-600">{member?.gender === "male" ? "남" : "여"}</td>
-                        <td className="py-3 px-4 text-gray-600">{member?.age || 0}세</td>
-                        <td className="py-3 px-4 text-gray-600">{member?.height || 0}cm</td>
-                        <td className="py-3 px-4 text-gray-600">{member?.weight || 0}kg</td>
-                        <td className="py-3 px-4 text-gray-600 text-sm max-w-[200px]">
+                      <tr key={member.id} className="hover:bg-surface-50">
+                        <td className="table-td font-semibold text-surface-900">{member?.name || "-"}</td>
+                        <td className="table-td text-surface-700">{member?.gender === "male" ? "남" : "여"}</td>
+                        <td className="table-td text-surface-700">{member?.age || 0}세</td>
+                        <td className="table-td text-surface-700">{member?.height || 0}cm</td>
+                        <td className="table-td text-surface-700">{member?.weight || 0}kg</td>
+                        <td className="table-td text-surface-700 max-w-[200px]">
                           <div className="truncate" title={member?.notes || "-"}>
                             {member?.notes || "-"}
                           </div>
                         </td>
-                        <td className="py-3 px-4 text-gray-500 text-sm">
+                        <td className="table-td text-surface-500">
                           {mounted && typeof window !== "undefined" && member?.createdAt
                             ? (() => {
                                 try {
@@ -665,15 +658,15 @@ export default function ListPage() {
                               })()
                             : member?.createdAt || "-"}
                         </td>
-                        <td className="py-3 px-4">
+                        <td className="table-td">
                           <div className="flex items-center gap-3">
-                            <button onClick={() => member && handleViewHistory(member)} className="text-green-500 hover:text-green-700 font-medium text-sm" disabled={!member}>
+                            <button onClick={() => member && handleViewHistory(member)} className="text-brand-700 hover:text-brand-800 font-semibold text-sm" disabled={!member}>
                               측정이력
                             </button>
-                            <button onClick={() => member && handleEdit(member)} className="text-blue-500 hover:text-blue-700 font-medium text-sm" disabled={!member}>
+                            <button onClick={() => member && handleEdit(member)} className="text-surface-700 hover:text-surface-900 font-semibold text-sm" disabled={!member}>
                               수정
                             </button>
-                            <button onClick={() => member && handleDelete(member.id, member.name || "")} className="text-red-500 hover:text-red-700 font-medium text-sm" disabled={!member}>
+                            <button onClick={() => member && handleDelete(member.id, member.name || "")} className="text-red-600 hover:text-red-800 font-semibold text-sm" disabled={!member}>
                               삭제
                             </button>
                           </div>
@@ -691,16 +684,16 @@ export default function ListPage() {
       {/* 수정 모달 */}
       {editingMember && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-xl max-w-md w-full p-6">
+          <div className="bg-white rounded-2xl shadow-xl max-w-md w-full p-6 border border-surface-200">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-bold text-gray-800">회원정보 수정</h2>
-              <button onClick={handleCloseModal} className="text-gray-400 hover:text-gray-600 text-2xl">
+              <h2 className="text-xl font-extrabold text-surface-900">회원정보 수정</h2>
+              <button onClick={handleCloseModal} className="text-surface-400 hover:text-surface-600 text-2xl">
                 ×
               </button>
             </div>
             <form onSubmit={handleUpdate} className="space-y-4">
               <div>
-                <label className="block text-gray-700 font-medium mb-1" htmlFor="edit-name">
+                <label className="form-label" htmlFor="edit-name">
                   이름 <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -709,27 +702,27 @@ export default function ListPage() {
                   type="text"
                   required
                   defaultValue={editingMember.name}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 outline-none focus:ring-2 focus:ring-blue-200"
+                  className="form-input"
                   placeholder="이름을 입력하세요"
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-medium mb-1" htmlFor="edit-gender">
+                <label className="form-label" htmlFor="edit-gender">
                   성별 <span className="text-red-500">*</span>
                 </label>
                 <div className="flex items-center gap-5">
                   <label className="inline-flex items-center">
-                    <input type="radio" name="gender" value="male" required defaultChecked={editingMember.gender === "male"} className="form-radio text-blue-600" />
-                    <span className="ml-2">남</span>
+                    <input type="radio" name="gender" value="male" required defaultChecked={editingMember.gender === "male"} className="form-radio" />
+                    <span className="ml-2 text-sm font-semibold text-surface-800">남</span>
                   </label>
                   <label className="inline-flex items-center">
-                    <input type="radio" name="gender" value="female" required defaultChecked={editingMember.gender === "female"} className="form-radio text-blue-600" />
-                    <span className="ml-2">여</span>
+                    <input type="radio" name="gender" value="female" required defaultChecked={editingMember.gender === "female"} className="form-radio" />
+                    <span className="ml-2 text-sm font-semibold text-surface-800">여</span>
                   </label>
                 </div>
               </div>
               <div>
-                <label className="block text-gray-700 font-medium mb-1" htmlFor="edit-age">
+                <label className="form-label" htmlFor="edit-age">
                   나이 <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -739,13 +732,13 @@ export default function ListPage() {
                   min="1"
                   required
                   defaultValue={editingMember.age}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 outline-none focus:ring-2 focus:ring-blue-200"
+                  className="form-input"
                   placeholder="나이를 입력하세요"
                   onWheel={(e) => e.currentTarget.blur()}
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-medium mb-1" htmlFor="edit-height">
+                <label className="form-label" htmlFor="edit-height">
                   키(cm) <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -756,13 +749,13 @@ export default function ListPage() {
                   step="0.1"
                   required
                   defaultValue={editingMember.height}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 outline-none focus:ring-2 focus:ring-blue-200"
+                  className="form-input"
                   placeholder="키를 입력하세요"
                   onWheel={(e) => e.currentTarget.blur()}
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-medium mb-1" htmlFor="edit-weight">
+                <label className="form-label" htmlFor="edit-weight">
                   몸무게(kg) <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -773,7 +766,7 @@ export default function ListPage() {
                   step="0.1"
                   required
                   defaultValue={editingMember.weight}
-                  className="w-full border border-gray-300 rounded-md px-3 py-2 outline-none focus:ring-2 focus:ring-blue-200"
+                  className="form-input"
                   placeholder="몸무게를 입력하세요"
                   onWheel={(e) => e.currentTarget.blur()}
                 />
@@ -846,13 +839,13 @@ export default function ListPage() {
               </div>
 
               <div className="flex gap-3 pt-4">
-                <button type="button" onClick={handleCloseModal} className="flex-1 px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors font-medium">
+                <button type="button" onClick={handleCloseModal} className="flex-1 btn-secondary">
                   취소
                 </button>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="flex-1 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors font-medium disabled:bg-gray-400 disabled:cursor-not-allowed"
+                  className="flex-1 btn-primary disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? "저장 중..." : "저장"}
                 </button>

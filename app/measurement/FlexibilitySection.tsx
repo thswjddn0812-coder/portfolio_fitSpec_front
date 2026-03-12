@@ -52,28 +52,28 @@ export const flexibilitySections: FlexibilitySection[] = [
 export default function FlexibilitySection({ section, inputRef, isMissing = false }: { section: FlexibilitySection; inputRef?: (el: HTMLInputElement | null) => void; isMissing?: boolean }) {
   return (
     <div>
-      <h3 className="text-xl font-bold text-gray-800 mb-2">{section.title}</h3>
-      <div className={`mt-4 p-3 rounded-md ${isMissing ? "bg-red-50 border-2 border-red-200" : ""}`}>
+      <h3 className="text-base font-extrabold text-surface-900 mb-3">{section.title}</h3>
+      <div className={`mt-3 rounded-2xl border p-4 ${isMissing ? "bg-red-50 border-red-200 ring-2 ring-red-100" : "bg-white border-surface-200"}`}>
         <div className="flex gap-4 flex-wrap">
           <label className="inline-flex items-center">
-            <input ref={inputRef} type="radio" name={section.kgField} value="excellent" className={`form-radio ${isMissing ? "text-red-600 ring-2 ring-red-200" : "text-green-600"}`} />
-            <span className="ml-2">매우좋음</span>
+            <input ref={inputRef} type="radio" name={section.kgField} value="excellent" className="form-radio" />
+            <span className="ml-2 text-sm text-surface-700 font-semibold">매우좋음</span>
           </label>
           <label className="inline-flex items-center">
-            <input type="radio" name={section.kgField} value="good" className={`form-radio ${isMissing ? "text-red-600" : "text-green-600"}`} />
-            <span className="ml-2">좋음</span>
+            <input type="radio" name={section.kgField} value="good" className="form-radio" />
+            <span className="ml-2 text-sm text-surface-700 font-semibold">좋음</span>
           </label>
           <label className="inline-flex items-center">
-            <input type="radio" name={section.kgField} value="normal" className={`form-radio ${isMissing ? "text-red-600" : "text-green-600"}`} />
-            <span className="ml-2">보통</span>
+            <input type="radio" name={section.kgField} value="normal" className="form-radio" />
+            <span className="ml-2 text-sm text-surface-700 font-semibold">보통</span>
           </label>
           <label className="inline-flex items-center">
-            <input type="radio" name={section.kgField} value="bad" className={`form-radio ${isMissing ? "text-red-600" : "text-green-600"}`} />
-            <span className="ml-2">나쁨</span>
+            <input type="radio" name={section.kgField} value="bad" className="form-radio" />
+            <span className="ml-2 text-sm text-surface-700 font-semibold">나쁨</span>
           </label>
           <label className="inline-flex items-center">
-            <input type="radio" name={section.kgField} value="very_bad" className={`form-radio ${isMissing ? "text-red-600" : "text-green-600"}`} />
-            <span className="ml-2">매우나쁨</span>
+            <input type="radio" name={section.kgField} value="very_bad" className="form-radio" />
+            <span className="ml-2 text-sm text-surface-700 font-semibold">매우나쁨</span>
           </label>
         </div>
       </div>

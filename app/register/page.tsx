@@ -215,34 +215,36 @@ export default function RegisterPage() {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="mb-8">
-        <div className="badge">MEMBER</div>
-        <h1 className="section-title mt-3">회원 등록</h1>
-        <p className="section-subtitle">새로운 회원의 기본 정보를 등록합니다.</p>
+        <div className="flex items-center gap-3 mb-2">
+          <span className="text-4xl">📝</span>
+          <h1 className="text-4xl font-bold text-gray-800">회원정보등록</h1>
+        </div>
+        <p className="text-gray-600 text-lg ml-12">새로운 회원의 정보를 등록합니다</p>
       </div>
 
       {showSuccess && (
-        <div className="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-900 px-4 py-3 rounded-xl flex items-center gap-2 text-sm">
-          <span className="font-bold">완료</span>
-          <span className="font-semibold">회원 정보가 성공적으로 등록되었습니다.</span>
+        <div className="mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg flex items-center gap-2">
+          <span className="text-xl">✅</span>
+          <span className="font-medium">회원 정보가 성공적으로 등록되었습니다!</span>
         </div>
       )}
 
       {error && (
-        <div className="mb-6 bg-red-50 border border-red-200 text-red-900 px-4 py-3 rounded-xl flex items-center gap-2 text-sm">
-          <span className="font-bold">오류</span>
-          <span className="font-semibold">{error}</span>
+        <div className="mb-6 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg flex items-center gap-2">
+          <span className="text-xl">❌</span>
+          <span className="font-medium">{error}</span>
         </div>
       )}
 
-      <div className="card-surface shadow-soft p-8">
-        <div className="max-w-2xl mx-auto">
-          <div className="mb-6">
-            <h2 className="text-xl font-extrabold text-surface-900 tracking-tight">기본 정보</h2>
-            <p className="text-sm text-surface-600 mt-1">필수 항목을 입력하고 등록을 완료하세요.</p>
+      <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+        <div className="max-w-md mx-auto">
+          <div className="w-24 h-24 bg-gradient-to-br from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-6">
+            <span className="text-5xl">📋</span>
           </div>
+          <h2 className="text-2xl font-semibold text-gray-700 mb-6 text-center">회원정보 등록</h2>
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div>
-              <label className="form-label" htmlFor="name">
+              <label className="block text-gray-700 font-medium mb-1" htmlFor="name">
                 이름 <span className="text-red-500">*</span>
               </label>
               <input
@@ -250,90 +252,83 @@ export default function RegisterPage() {
                 name="name"
                 type="text"
                 required
-                className="form-input"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 outline-none focus:ring-2 focus:ring-blue-200"
                 placeholder="이름을 입력하세요"
               />
             </div>
             <div>
-              <label className="form-label" htmlFor="gender">
+              <label className="block text-gray-700 font-medium mb-1" htmlFor="gender">
                 성별 <span className="text-red-500">*</span>
               </label>
-              <div className="flex items-center gap-6">
+              <div className="flex items-center gap-5">
                 <label className="inline-flex items-center cursor-pointer">
-                  <input type="radio" name="gender" value="male" required className="form-radio" />
-                  <span className="ml-2 text-sm text-surface-800 font-semibold">남</span>
+                  <input type="radio" name="gender" value="male" required className="form-radio text-blue-600" />
+                  <span className="ml-2">남</span>
                 </label>
                 <label className="inline-flex items-center cursor-pointer">
-                  <input type="radio" name="gender" value="female" required className="form-radio" />
-                  <span className="ml-2 text-sm text-surface-800 font-semibold">여</span>
+                  <input type="radio" name="gender" value="female" required className="form-radio text-blue-600" />
+                  <span className="ml-2">여</span>
                 </label>
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <div>
-                <label className="form-label" htmlFor="age">
-                  나이 <span className="text-red-500">*</span>
-                </label>
-                <input
-                  id="age"
-                  name="age"
-                  type="number"
-                  min="1"
-                  required
-                  className="form-input"
-                  placeholder="나이"
-                  onWheel={(e) => e.currentTarget.blur()}
-                />
-              </div>
-              <div>
-                <label className="form-label" htmlFor="height">
-                  키(cm) <span className="text-red-500">*</span>
-                </label>
-                <input
-                  id="height"
-                  name="height"
-                  type="number"
-                  min="0.1"
-                  step="0.1"
-                  required
-                  className="form-input"
-                  placeholder="키"
-                  onWheel={(e) => e.currentTarget.blur()}
-                />
-              </div>
-              <div>
-                <label className="form-label" htmlFor="weight">
-                  몸무게(kg) <span className="text-red-500">*</span>
-                </label>
-                <input
-                  id="weight"
-                  name="weight"
-                  type="number"
-                  min="0.1"
-                  step="0.1"
-                  required
-                  className="form-input"
-                  placeholder="몸무게"
-                  onWheel={(e) => e.currentTarget.blur()}
-                />
-              </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-1" htmlFor="age">
+                나이 <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="age"
+                name="age"
+                type="number"
+                min="1"
+                required
+                className="w-full border border-gray-300 rounded-md px-3 py-2 outline-none focus:ring-2 focus:ring-blue-200"
+                placeholder="나이를 입력하세요"
+                onWheel={(e) => e.currentTarget.blur()}
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-1" htmlFor="height">
+                키(cm) <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="height"
+                name="height"
+                type="number"
+                min="0.1"
+                step="0.1"
+                required
+                className="w-full border border-gray-300 rounded-md px-3 py-2 outline-none focus:ring-2 focus:ring-blue-200"
+                placeholder="키를 입력하세요"
+                onWheel={(e) => e.currentTarget.blur()}
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium mb-1" htmlFor="weight">
+                몸무게(kg) <span className="text-red-500">*</span>
+              </label>
+              <input
+                id="weight"
+                name="weight"
+                type="number"
+                min="0.1"
+                step="0.1"
+                required
+                className="w-full border border-gray-300 rounded-md px-3 py-2 outline-none focus:ring-2 focus:ring-blue-200"
+                placeholder="몸무게를 입력하세요"
+                onWheel={(e) => e.currentTarget.blur()}
+              />
             </div>
 
             <div>
-              <div className="flex items-end justify-between gap-4 flex-wrap mb-2">
-                <div>
-                  <div className="text-sm font-extrabold text-surface-900">특이사항 (부상)</div>
-                  <div className="text-xs text-surface-600 mt-1">선택 항목이며, 체크한 항목이 특이사항으로 저장됩니다.</div>
-                </div>
-              </div>
+              <label className="block text-gray-700 font-medium mb-2">특이사항 (부상)</label>
 
               <div className="space-y-3">
                 {/* 주요 부상 부위 */}
                 <div className="flex flex-wrap gap-3">
                   {["무릎", "발목", "어깨", "허리", "손목", "목"].map((injury) => (
                     <label key={injury} className="inline-flex items-center cursor-pointer">
-                      <input type="checkbox" checked={injuries.includes(injury)} onChange={() => handleInjuryChange(injury)} className="form-checkbox" />
-                      <span className="ml-2 text-sm text-surface-800 font-semibold">{injury}</span>
+                      <input type="checkbox" checked={injuries.includes(injury)} onChange={() => handleInjuryChange(injury)} className="form-checkbox text-blue-600 rounded" />
+                      <span className="ml-2 text-gray-700">{injury}</span>
                     </label>
                   ))}
                 </div>
@@ -342,7 +337,7 @@ export default function RegisterPage() {
                 <div className="transition-all duration-300 ease-in-out">
                   <button
                     type="button"
-                    className="text-brand-700 text-sm font-semibold focus:outline-none hover:underline transition-all duration-300"
+                    className="text-blue-600 text-sm font-medium focus:outline-none hover:underline transition-all duration-300"
                     onClick={() => setShowMoreInjuries((prev) => !prev)}
                   >
                     {showMoreInjuries ? "숨기기 ▲" : "+ 더보기 ▼"}
@@ -351,7 +346,7 @@ export default function RegisterPage() {
 
                 {/* 추가 부상 부위 */}
                 <div className={`overflow-hidden transition-all duration-300 ease-in-out ${showMoreInjuries ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"}`}>
-                  <div className="flex flex-wrap gap-3 pt-3 border-t border-surface-200">
+                  <div className="flex flex-wrap gap-3 pt-2 border-t border-gray-200">
                     {[
                       "고관절",
                       "발가락",
@@ -373,8 +368,8 @@ export default function RegisterPage() {
                       "옆구리",
                     ].map((injury) => (
                       <label key={injury} className="inline-flex items-center cursor-pointer">
-                        <input type="checkbox" checked={injuries.includes(injury)} onChange={() => handleInjuryChange(injury)} className="form-checkbox" />
-                        <span className="ml-2 text-sm text-surface-800 font-semibold">{injury}</span>
+                        <input type="checkbox" checked={injuries.includes(injury)} onChange={() => handleInjuryChange(injury)} className="form-checkbox text-blue-600 rounded" />
+                        <span className="ml-2 text-gray-700">{injury}</span>
                       </label>
                     ))}
                   </div>
@@ -382,11 +377,13 @@ export default function RegisterPage() {
               </div>
             </div>
 
-            <div className="pt-2">
-              <button type="submit" disabled={isSubmitting} className="w-full btn-primary disabled:opacity-60 disabled:cursor-not-allowed">
-                {isSubmitting ? "등록 중..." : "등록하기"}
-              </button>
-            </div>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-gradient-to-r from-gray-400 to-gray-600 text-white text-lg font-semibold rounded-md py-2 hover:from-gray-600 hover:to-gray-800 transition disabled:bg-gray-400 disabled:cursor-not-allowed"
+            >
+              {isSubmitting ? "등록 중..." : "등록하기"}
+            </button>
           </form>
         </div>
       </div>

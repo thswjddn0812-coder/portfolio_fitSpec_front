@@ -83,10 +83,10 @@ export const weightTrainingSections: WeightTrainingSection[] = [
 export default function WeightTrainingSection({ section, inputRef, isMissing = false }: { section: WeightTrainingSection; inputRef?: (el: HTMLInputElement | null) => void; isMissing?: boolean }) {
   return (
     <div className="mb-6">
-      <h3 className="text-xl font-bold text-gray-800 mb-2">{section.title}</h3>
+      <h3 className="text-base font-extrabold text-surface-900 mb-3">{section.title}</h3>
       <div className="max-w-xs">
         <div>
-          <label className="block font-medium mb-1 text-gray-700" htmlFor={section.kgField}>
+          <label className="form-label" htmlFor={section.kgField}>
             무게 (kg)
           </label>
           <input
@@ -95,21 +95,19 @@ export default function WeightTrainingSection({ section, inputRef, isMissing = f
             name={section.kgField}
             type="number"
             min="0"
-            className={`w-full border rounded-md px-3 py-2 ${
-              isMissing ? "border-red-500 ring-2 ring-red-200 bg-red-50 focus:ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-blue-200 focus:border-blue-500"
-            }`}
+            className={`form-input ${isMissing ? "border-red-300 ring-2 ring-red-100 bg-red-50 focus:ring-red-100 focus:border-red-300" : ""}`}
             placeholder="무게"
             onWheel={(e) => e.currentTarget.blur()}
           />
         </div>
       </div>
       <div className="mt-4">
-        <div className="text-red-500 font-medium mb-2">선택사항</div>
-        <div className="flex flex-col gap-1">
+        <div className="text-xs font-extrabold tracking-widest text-surface-500 mb-2">OPTIONAL</div>
+        <div className="flex flex-col gap-2">
           {section.options.map((option) => (
             <label key={option.name} className="inline-flex items-center">
-              <input type="checkbox" name={option.name} className="form-checkbox text-green-600" />
-              <span className="ml-2">{option.label}</span>
+              <input type="checkbox" name={option.name} className="form-checkbox" />
+              <span className="ml-2 text-sm text-surface-700">{option.label}</span>
             </label>
           ))}
         </div>

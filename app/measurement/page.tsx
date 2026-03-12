@@ -552,34 +552,34 @@ export default function MeasurementPage() {
   return (
     <div className="max-w-5xl mx-auto">
       <div className="mb-8">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-4xl">📊</span>
-          <h1 className="text-4xl font-bold text-gray-800">회원점수측정</h1>
-        </div>
-        <p className="text-gray-600 text-lg ml-12">회원의 체력 및 신체 측정 점수를 기록합니다</p>
+        <div className="badge">MEASUREMENT</div>
+        <h1 className="section-title mt-3">측정 / 평가</h1>
+        <p className="section-subtitle">회원의 체력 및 신체 측정 점수를 기록합니다.</p>
       </div>
 
       {showSuccess && (
-        <div className="mb-6 bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg flex items-center gap-2">
-          <span className="text-xl">✅</span>
-          <span className="font-medium">측정 데이터가 성공적으로 저장되었습니다!</span>
+        <div className="mb-6 bg-emerald-50 border border-emerald-200 text-emerald-900 px-4 py-3 rounded-xl flex items-center gap-2 text-sm">
+          <span className="font-bold">완료</span>
+          <span className="font-semibold">측정 데이터가 성공적으로 저장되었습니다.</span>
         </div>
       )}
 
-      <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+      <div className="card-surface shadow-soft p-8">
         <div className="max-w-2xl mx-auto">
           {!showMeasurementForm ? (
             <>
               {/* 회원 선택 섹션 */}
               <div className="mb-8">
-                <h2 className="text-2xl font-semibold text-gray-700 mb-4">측정할 회원 선택</h2>
+                <h2 className="text-xl font-extrabold text-surface-900 tracking-tight mb-3">측정할 회원 선택</h2>
+                <p className="text-sm text-surface-600 mb-4">회원 선택 후, 측정할 운동 타입을 선택하세요.</p>
                 <MemberSelector members={members} selectedMemberId={selectedMemberId} onSelectMember={setSelectedMemberId} />
               </div>
 
               {/* 운동 선택 섹션 */}
               {selectedMemberId && (
                 <div className="mb-8">
-                  <h2 className="text-2xl font-semibold text-gray-700 mb-4">측정할 운동 선택 (복수 선택 가능)</h2>
+                  <h2 className="text-xl font-extrabold text-surface-900 tracking-tight mb-3">측정할 운동 선택</h2>
+                  <p className="text-sm text-surface-600 mb-4">복수 선택 가능하며, 선택한 타입만 측정 폼이 표시됩니다.</p>
                   <ExerciseTypeSelector selectedExerciseTypes={selectedExerciseTypes} onToggleExerciseType={toggleExerciseType} allExerciseSections={allExerciseSections} />
                 </div>
               )}
@@ -589,7 +589,7 @@ export default function MeasurementPage() {
                 type="button"
                 onClick={handleNext}
                 disabled={!canProceed}
-                className="w-full bg-gradient-to-r flex justify-center items-center from-green-400 to-green-600 text-white text-lg font-semibold rounded-md py-3 hover:from-green-500 hover:to-green-700 transition disabled:bg-gray-300 disabled:cursor-not-allowed disabled:hover:from-gray-300 disabled:hover:to-gray-300"
+                className="w-full btn-primary disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 다음
               </button>
@@ -598,34 +598,31 @@ export default function MeasurementPage() {
             <>
               {/* 측정 폼 헤더 */}
               <div className="mb-8">
-                <button type="button" onClick={handleBack} className="text-blue-600 hover:text-blue-800 font-medium mb-6 flex items-center gap-2 transition-colors">
-                  <span className="text-xl">←</span>
-                  <span>뒤로가기</span>
+                <button type="button" onClick={handleBack} className="btn-ghost px-0 mb-5 flex items-center gap-2">
+                  <span className="text-surface-500 font-bold">←</span>
+                  <span>이전 단계</span>
                 </button>
 
                 {/* 회원 및 운동 정보 카드 */}
-                <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-2 border-blue-200 rounded-xl p-6 mb-6 shadow-sm">
-                  <div className="flex items-center gap-4 mb-3">
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl">👤</span>
-                      <div>
-                        <div className="text-xs text-gray-500 mb-1">측정 회원</div>
-                        <div className="text-lg font-semibold text-gray-800">{selectedMember?.name}</div>
+                <div className="rounded-2xl border border-surface-200 bg-surface-50 p-5 mb-6">
+                  <div className="flex items-start justify-between gap-4 flex-wrap">
+                    <div>
+                      <div className="text-xs font-extrabold tracking-widest text-surface-500">SUMMARY</div>
+                      <div className="mt-2 text-lg font-extrabold text-surface-900">
+                        {selectedMember?.name}
+                        <span className="text-surface-500 font-semibold ml-2 text-sm">회원</span>
                       </div>
-                    </div>
-                    <div className="h-12 w-px bg-blue-300"></div>
-                    <div className="flex items-center gap-2">
-                      <span className="text-2xl">🏋️</span>
-                      <div>
-                        <div className="text-xs text-gray-500 mb-1">선택된 운동</div>
-                        <div className="text-lg font-semibold text-gray-800">
+                      <div className="mt-2 text-sm text-surface-600">
+                        운동 타입:{" "}
+                        <span className="font-semibold text-surface-800">
                           {selectedExerciseTypes.map((type) => (type === "flexibility" ? "유연성" : type === "bodyweight" ? "맨몸운동" : "웨이트 트레이닝")).join(", ")}
-                        </div>
+                        </span>
                       </div>
                     </div>
-                  </div>
-                  <div className="text-sm text-gray-600 mt-2">
-                    총 <span className="font-semibold text-blue-700">{filteredExerciseSections.length}개</span>의 측정 항목을 입력해주세요
+                    <div className="rounded-2xl bg-white border border-surface-200 px-4 py-3">
+                      <div className="text-xs font-extrabold tracking-widest text-surface-500">REQUIRED</div>
+                      <div className="mt-1 text-sm font-extrabold text-brand-700">{filteredExerciseSections.length}개 항목</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -638,24 +635,15 @@ export default function MeasurementPage() {
                       const items = groupedExerciseSections[cat];
                       if (!items || items.length === 0) return null;
                       const title = cat === "weight" ? "웨이트 트레이닝" : cat === "bodyweight" ? "맨몸운동" : "유연성";
-                      const emoji = cat === "weight" ? "🏋️" : cat === "bodyweight" ? "💪" : "🧘";
-                      const bgColor =
-                        cat === "weight"
-                          ? "from-purple-50 to-pink-50 border-purple-200"
-                          : cat === "bodyweight"
-                          ? "from-orange-50 to-amber-50 border-orange-200"
-                          : "from-green-50 to-emerald-50 border-green-200";
-                      const textColor = cat === "weight" ? "text-purple-700" : cat === "bodyweight" ? "text-orange-700" : "text-green-700";
+                      const pill = cat === "weight" ? "bg-brand-600" : cat === "bodyweight" ? "bg-surface-900" : "bg-brand-700";
 
                       return (
-                        <div key={cat} className="bg-white border-2 border-gray-200 rounded-xl p-6 shadow-sm mb-6">
-                          <div className={`bg-gradient-to-r ${bgColor} rounded-lg p-4 mb-4`}>
-                            <div className="flex items-center gap-3 mb-2">
-                              <span className="text-3xl">{emoji}</span>
-                              <div>
-                                <h3 className={`text-xl font-semibold ${textColor}`}>{title}</h3>
-                                <p className="text-sm text-gray-600 mt-1">{items.length}개의 측정 항목</p>
-                              </div>
+                        <div key={cat} className="card-surface p-6 mb-6">
+                          <div className="flex items-start justify-between gap-4 mb-4">
+                            <div>
+                              <div className={`inline-flex items-center rounded-xl px-3 py-1.5 text-xs font-extrabold tracking-widest text-white ${pill}`}>CATEGORY</div>
+                              <h3 className="mt-3 text-lg font-extrabold text-surface-900">{title}</h3>
+                              <p className="mt-1 text-sm text-surface-600">{items.length}개의 측정 항목</p>
                             </div>
                           </div>
                           <div className="space-y-6">
@@ -668,8 +656,8 @@ export default function MeasurementPage() {
                               return (
                                 <div
                                   key={`${section.category}-${section.prefix}-${index}`}
-                                  className={`bg-white border rounded-lg p-5 shadow-sm hover:shadow-md transition-shadow ${
-                                    isMissing ? "border-red-500 ring-2 ring-red-200 bg-red-50" : "border-gray-200"
+                                  className={`rounded-2xl border p-5 transition-colors ${
+                                    isMissing ? "border-red-300 bg-red-50 ring-2 ring-red-100" : "border-surface-200 bg-white hover:bg-surface-50"
                                   }`}
                                 >
                                   <Component
@@ -690,27 +678,24 @@ export default function MeasurementPage() {
                     })}
                   </>
                 ) : (
-                  <div className="text-center py-12 text-gray-500 bg-gray-50 rounded-lg border border-gray-200">
-                    <span className="text-4xl mb-3 block">📝</span>
+                  <div className="text-center py-12 text-surface-600 bg-surface-50 rounded-2xl border border-surface-200">
                     <p>선택한 운동 타입에 대한 측정 항목이 없습니다.</p>
                   </div>
                 )}
 
                 {/* 제출 버튼 */}
-                <div className="sticky bottom-0 bg-white pt-6 pb-2 -mx-8 px-8 border-t border-gray-200 mt-8">
+                <div className="sticky bottom-0 bg-white/85 backdrop-blur pt-5 pb-2 -mx-8 px-8 border-t border-surface-200 mt-8">
                   <button
                     type="submit"
                     disabled={isSubmitting || !selectedMemberId}
-                    className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white text-lg font-semibold rounded-lg py-4 hover:from-green-600 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl disabled:bg-gray-300 disabled:cursor-not-allowed disabled:hover:from-gray-300 disabled:hover:to-gray-300 disabled:shadow-none"
+                    className="w-full btn-primary py-4 text-base disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? (
                       <span className="flex items-center justify-center gap-2">
-                        <span className="animate-spin">⏳</span>
                         <span>저장 중...</span>
                       </span>
                     ) : (
                       <span className="flex items-center justify-center gap-2">
-                        <span>✅</span>
                         <span>측정 완료</span>
                       </span>
                     )}
