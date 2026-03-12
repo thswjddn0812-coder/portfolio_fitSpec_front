@@ -3,10 +3,16 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    color-scheme: light;
+  }
+
   /* 2. Global font-family */
   html,
   body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
   }
 
   /* 3-1. Headings */
@@ -41,6 +47,24 @@
 
   input[type="number"] {
     -moz-appearance: textfield;
+  }
+}
+
+@layer components {
+  .container-page {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .card-surface {
+    @apply bg-white border border-surface-200 rounded-2xl shadow-sm;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-xl bg-brand-600 px-4 py-2.5 text-white font-semibold shadow-sm hover:bg-brand-700 transition-colors;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center rounded-xl px-4 py-2.5 text-surface-700 font-semibold hover:bg-surface-100 transition-colors;
   }
 }
 

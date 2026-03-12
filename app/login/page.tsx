@@ -146,22 +146,30 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4">
+    <div className="min-h-[calc(100vh-0px)] flex items-center justify-center bg-surface-50 px-4 py-10">
+      <Link
+        href="/"
+        className="fixed left-4 top-4 z-50 inline-flex items-center gap-2 rounded-xl border border-surface-200 bg-white/90 backdrop-blur px-3 py-2 text-sm font-semibold text-surface-700 hover:bg-surface-50 transition-colors shadow-sm"
+        aria-label="메인으로 돌아가기"
+      >
+        <span className="text-surface-500 font-bold">←</span>
+        뒤로가기
+      </Link>
       <div className="max-w-md w-full">
-        <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-8">
+        <div className="card-surface shadow-soft p-8">
           <div className="text-center mb-8">
-            <div className="w-20 h-20 bg-gradient-to-r from-gray-400 to-gray-600 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-4xl">💪</span>
+            <div className="w-14 h-14 bg-brand-600 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+              <span className="text-white font-extrabold text-xl tracking-tight">F</span>
             </div>
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">로그인</h1>
-            <p className="text-gray-600">헬스장 회원관리 시스템에 로그인하세요</p>
+            <h1 className="text-2xl font-extrabold text-surface-900 mb-2 tracking-tight">로그인</h1>
+            <p className="text-surface-600 text-sm">FitSpec 계정으로 로그인하세요.</p>
           </div>
 
-          {error && <div className="mb-4 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg text-sm">{error}</div>}
+          {error && <div className="mb-4 bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-xl text-sm">{error}</div>}
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-gray-700 font-medium mb-1" htmlFor="email">
+              <label className="block text-surface-700 font-semibold mb-2 text-sm" htmlFor="email">
                 이메일 <span className="text-red-500">*</span>
               </label>
               <input
@@ -170,14 +178,14 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full border border-gray-300 rounded-md px-4 py-2.5 outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500"
+                className="w-full border border-surface-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-100 focus:border-brand-400 bg-white placeholder:text-surface-400"
                 placeholder="이메일을 입력하세요"
                 disabled={isSubmitting}
               />
             </div>
 
             <div>
-              <label className="block text-gray-700 font-medium mb-1" htmlFor="password">
+              <label className="block text-surface-700 font-semibold mb-2 text-sm" htmlFor="password">
                 비밀번호 <span className="text-red-500">*</span>
               </label>
               <input
@@ -186,7 +194,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
-                className="w-full border border-gray-300 rounded-md px-4 py-2.5 outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500"
+                className="w-full border border-surface-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-brand-100 focus:border-brand-400 bg-white placeholder:text-surface-400"
                 placeholder="비밀번호를 입력하세요"
                 disabled={isSubmitting}
               />
@@ -195,30 +203,39 @@ export default function LoginPage() {
             <div>
               <div className="mb-2 flex justify-between items-center">
                 <label className="inline-flex items-center cursor-pointer">
-                  <input type="checkbox" checked={saveEmail} onChange={(e) => setSaveEmail(e.target.checked)} className="form-checkbox text-blue-600" />
-                  <span className="ml-2">이메일 저장</span>
+                  <input
+                    type="checkbox"
+                    checked={saveEmail}
+                    onChange={(e) => setSaveEmail(e.target.checked)}
+                    className="h-4 w-4 rounded border-surface-300 text-brand-600 focus:ring-brand-100"
+                  />
+                  <span className="ml-2 text-sm text-surface-700">이메일 저장</span>
                 </label>
                 <div className="text-end">
-                  <span className="text-blue-600 text-sm underline cursor-pointer ">이메일ㆍ비밀번호 찾기</span>
+                  <span className="text-brand-700 text-sm font-semibold hover:underline cursor-pointer">이메일ㆍ비밀번호 찾기</span>
                 </div>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-gradient-to-r from-gray-400 to-gray-600 text-white text-lg font-semibold rounded-md py-3 hover:from-gray-600 hover:to-gray-800 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+                className="w-full btn-primary disabled:opacity-60 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? "로그인 중..." : "로그인"}
               </button>
-              <div className="w-full border-t border-gray-200 my-4"></div>
+              <div className="w-full border-t border-surface-200 my-5"></div>
               <Link
                 href="/signup"
-                className="block w-full bg-gradient-to-r from-orange-400 to-orange-600 text-white text-lg font-semibold rounded-md py-3 hover:from-orange-600 hover:to-orange-800 transition-colors text-center"
+                className="block w-full text-center rounded-xl border border-surface-200 bg-white px-4 py-3 font-semibold text-surface-800 hover:bg-surface-50 transition-colors"
               >
                 회원가입
               </Link>
             </div>
           </form>
+        </div>
+
+        <div className="mt-6 text-center text-xs text-surface-500">
+          계속 진행하면 FitSpec의 이용약관 및 개인정보처리방침에 동의하는 것으로 간주됩니다.
         </div>
       </div>
     </div>

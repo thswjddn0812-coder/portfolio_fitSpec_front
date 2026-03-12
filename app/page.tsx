@@ -2,39 +2,96 @@ import Link from "next/link";
 
 export default function Home() {
   const quickActions = [
-    { path: "/register", title: "회원정보등록", description: "새로운 회원 정보를 등록합니다", icon: "📝", color: "from-red-500 to-red-600" },
-    { path: "/measurement", title: "회원점수측정", description: "회원의 체력 점수를 측정합니다", icon: "📊", color: "from-green-500 to-green-600" },
-    { path: "/list", title: "회원정보목록", description: "등록된 회원 정보를 조회합니다", icon: "📋", color: "from-purple-500 to-purple-600" },
+    { path: "/register", title: "회원등록", description: "새 회원 정보를 등록합니다", color: "bg-brand-600" },
+    { path: "/measurement", title: "측정/평가", description: "체력/신체 측정 데이터를 기록합니다", color: "bg-surface-900" },
+    { path: "/list", title: "회원목록", description: "등록된 회원 정보를 조회/관리합니다", color: "bg-brand-700" },
   ];
 
   return (
-    <div className="max-w-7xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold text-gray-800 mb-3">대시보드</h1>
-        <p className="text-gray-600 text-lg">헬스장 회원관리 시스템에 오신 것을 환영합니다</p>
-      </div>
+    <div className="space-y-8">
+      <section className="card-surface overflow-hidden shadow-soft">
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-br from-brand-50 via-white to-surface-50" />
+          <div className="relative p-8 md:p-10">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white border border-surface-200 px-3 py-1 text-xs font-extrabold tracking-widest text-surface-600">
+              SMART FITNESS
+              <span className="text-brand-700">FITSPEC</span>
+            </div>
+            <h1 className="mt-4 text-3xl md:text-4xl font-extrabold tracking-tight text-surface-900">회원/측정 관리를 한 화면에서</h1>
+            <p className="mt-3 text-surface-600 text-base md:text-lg max-w-2xl">
+              회원 등록, 측정/평가, 목록 관리를 빠르게 연결해서 운영 효율을 올려보세요.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link href="/measurement" className="btn-primary">
+                측정 시작
+              </Link>
+              <Link href="/register" className="btn-ghost border border-surface-200 bg-white hover:bg-surface-50">
+                회원 등록
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         {quickActions.map((action) => (
-          <Link key={action.path} href={action.path} className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-6 border border-gray-200 hover:border-red-300">
-            <div className={`w-16 h-16 rounded-lg bg-gradient-to-r ${action.color} flex items-center justify-center mb-4 text-3xl group-hover:scale-110 transition-transform duration-300`}>
-              {action.icon}
+          <Link
+            key={action.path}
+            href={action.path}
+            className="group card-surface p-6 hover:shadow-soft transition-shadow"
+          >
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <div className={`inline-flex items-center rounded-xl px-3 py-1.5 text-xs font-extrabold tracking-widest text-white ${action.color}`}>
+                  QUICK
+                </div>
+                <h3 className="mt-4 text-xl font-extrabold text-surface-900 group-hover:text-brand-700 transition-colors">{action.title}</h3>
+                <p className="mt-2 text-surface-600 text-sm">{action.description}</p>
+              </div>
+              <div className="w-10 h-10 rounded-2xl bg-surface-100 border border-surface-200 flex items-center justify-center text-surface-500 group-hover:bg-brand-50 group-hover:text-brand-700 group-hover:border-brand-100 transition-colors">
+                →
+              </div>
             </div>
-            <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-red-600 transition-colors">{action.title}</h3>
-            <p className="text-gray-600 text-sm">{action.description}</p>
           </Link>
         ))}
       </div>
 
-      <div className="bg-white rounded-xl shadow-md p-6 border border-gray-200">
-        <h2 className="text-2xl font-bold text-gray-800 mb-4">시작하기</h2>
-        <p className="text-gray-600 mb-4">좌측 메뉴에서 원하는 기능을 선택하거나, 위의 빠른 액션 카드를 클릭하여 시작하세요.</p>
-        <ul className="list-disc list-inside text-gray-600 space-y-2">
-          <li>회원정보등록: 새로운 회원의 정보를 등록합니다.</li>
-          <li>회원점수측정: 회원의 체력 및 신체 측정 점수를 기록합니다.</li>
-          <li>회원정보목록: 등록된 모든 회원 정보를 조회하고 관리합니다.</li>
-        </ul>
-      </div>
+      <section className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="card-surface p-6 lg:col-span-2">
+          <h2 className="text-xl font-extrabold text-surface-900">운영 흐름</h2>
+          <p className="mt-2 text-surface-600 text-sm">등록 → 측정/평가 → 목록 관리 순서로 업무가 이어집니다.</p>
+          <div className="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3">
+            {[
+              { title: "1) 회원 등록", desc: "기본 정보/특이사항 입력" },
+              { title: "2) 측정/평가", desc: "기록 저장 + 레이더 차트" },
+              { title: "3) 목록 관리", desc: "조회/수정/이력 확인" },
+            ].map((it) => (
+              <div key={it.title} className="rounded-2xl border border-surface-200 bg-surface-50 p-4">
+                <div className="text-sm font-extrabold text-surface-900">{it.title}</div>
+                <div className="mt-1 text-xs text-surface-600">{it.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="card-surface p-6">
+          <h2 className="text-xl font-extrabold text-surface-900">바로가기</h2>
+          <div className="mt-4 space-y-2">
+            <Link href="/measurement" className="flex items-center justify-between rounded-2xl border border-surface-200 px-4 py-3 hover:bg-surface-50 transition-colors">
+              <span className="text-sm font-semibold text-surface-800">측정/평가</span>
+              <span className="text-surface-400 font-bold">›</span>
+            </Link>
+            <Link href="/register" className="flex items-center justify-between rounded-2xl border border-surface-200 px-4 py-3 hover:bg-surface-50 transition-colors">
+              <span className="text-sm font-semibold text-surface-800">회원등록</span>
+              <span className="text-surface-400 font-bold">›</span>
+            </Link>
+            <Link href="/list" className="flex items-center justify-between rounded-2xl border border-surface-200 px-4 py-3 hover:bg-surface-50 transition-colors">
+              <span className="text-sm font-semibold text-surface-800">회원목록</span>
+              <span className="text-surface-400 font-bold">›</span>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
